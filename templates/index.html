@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assistant Suites, Séries et Séries entières</title>
+
+  <link rel="stylesheet" href="/static/style.css" />
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$","$$"]] },
+      svg: { fontCache: "global" }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Ton JS -->
+  <script defer src="/static/app.js"></script>
+</head>
+
+<body>
+
+  <h1>Assistant Suites, Séries et Séries entières</h1>
+
+  <div class="bloc">
+    <label for="type_input">Type de l'expression :</label>
+    <select id="type_input">
+      <option value="Suite">Suite numérique</option>
+      <option value="Série">Série numérique</option>
+      <option value="Suites de fonctions">Suite de fonctions</option>
+      <option value="Séries de fonctions">Série de fonctions</option>
+      <option value="Série entière">Série entière (étude de convergence et fonction somme)</option>
+      <option value="Développement en série entière">Développement en série entière d’une fonction</option>
+    </select>
+
+    <label for="user_input1" id="label_input1">Expression :</label>
+    <input type="text" id="user_input1"
+           placeholder="Ex : 1/n^2 | sin(x)/n | x^n/n! | exp(x)" />
+
+    <label for="user_input2" id="label_input2">Indice minimal (si nécessaire) :</label>
+    <input type="number" id="user_input2" value="0" />
+  </div>
+
+  <!-- BLOC INTERVALLE : utilisé pour suites/séries de fonctions + séries entières -->
+  <div class="bloc" id="interval_block">
+    <h3>Intervalle d’étude </h3>
+
+    <div class="intervalle">
+      <!-- borne gauche -->
+      <select id="left_bracket" class="interval-select" aria-label="Borne gauche">
+        <option value="(">(</option>
+        <option value="[">[</option>
+        <option value="]">]</option>
+      </select>
+
+      <input type="text" id="interval_left" placeholder="a" />
+
+      <span class="virgule">,</span>
+
+      <input type="text" id="interval_right" placeholder="b" />
+
+      <!-- borne droite -->
+      <select id="right_bracket" class="interval-select" aria-label="Borne droite">
+        <option value=")">)</option>
+        <option value="]">]</option>
+        <option value="[">[</option>
+      </select>
+    </div>
+
+    <p class="info">
+      <strong>Notations possibles :</strong><br>
+      ( a , b ) : intervalle ouvert<br>
+      [ a , b ] : intervalle fermé<br>
+      ] a , b [ : notation française de l’intervalle ouvert<br>
+      <br>
+      Si aucun intervalle n’est renseigné, l’étude est faite sur ℝ.<br>
+      Utiliser <code>oo</code> pour +∞ et <code>-oo</code> pour −∞.
+    </p>
+  </div>
+
+  <div class="bloc">
+    <button type="button" id="btn_run">Lancer l’analyse</button>
+  </div>
+
+  <div id="resultats" class="resultats"></div>
+
+</body>
+</html>
